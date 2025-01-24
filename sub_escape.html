@@ -25,6 +25,12 @@ PAL 0
 255,242,3
 NAME blueprint
 
+PAL 1
+227,1,27
+255,255,255
+255,242,3
+NAME emergency
+
 ROOM 0
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 0,g,i,i,i,i,i,i,i,i,i,i,i,i,h,0
@@ -65,23 +71,23 @@ ROOM 1
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 NAME flooded viewing room
 EXT 13,9 2 3,10 DLG 9
-PAL 0
+PAL 1
 TUNE 3
 
 ROOM 2
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 0,0,1a,17,17,1n,17,17,17,17,17,17,17,18,0,0
-0,0,1c,0,0,1o,1p,0,0,0,1k,1l,1s,1d,0,0
-0,0,1c,1r,0,0,1q,1s,0,0,0,1m,0,1d,0,0
-0,0,1c,0,0,1e,0,0,0,1i,0,0,1r,1d,0,0
+0,0,1c,0,0,1o,1t,0,0,0,1k,1l,1m,1d,0,0
+0,0,1y,1w,1w,1w,1w,1w,1w,1w,1w,1w,1w,1x,0,0
+0,0,1c,20,0,1e,0,1z,0,1i,0,1z,1r,1d,0,0
 0,0,1c,0,0,0,0,1f,1g,1h,0,0,0,1d,0,0
-0,0,1u,16,16,16,16,16,16,16,16,16,16,1t,0,0
-0,0,1c,0,0,0,0,0,0,0,0,0,0,1d,0,0
+0,0,1u,16,16,16,16,16,16,16,16,16,16,22,0,0
+0,0,1c,0,0,0,0,0,0,0,0,21,0,1d,0,0
 0,0,1c,0,0,0,0,0,0,0,0,0,0,1d,0,0
 0,0,1v,0,0,0,0,0,0,0,0,0,0,1d,0,0
 0,0,1c,0,0,0,0,0,0,0,0,0,0,1d,0,0
-0,0,1c,0,0,0,0,0,0,0,0,0,0,1d,0,0
+0,0,1c,0,0,0,0,0,24,23,0,0,0,1d,0,0
 0,0,1b,o,o,o,o,o,o,o,o,o,o,19,0,0
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
@@ -216,6 +222,57 @@ TIL 19
 11111111
 NAME control bottom right
 WAL true
+
+TIL 20
+00111100
+00100100
+00111100
+00000000
+00111100
+00100100
+00111100
+00000000
+
+TIL 21
+00000000
+00000000
+00000000
+00000000
+00000000
+00000000
+00010010
+00011011
+
+TIL 22
+11111111
+10000001
+11111111
+00000001
+00000001
+00000001
+00000001
+00000001
+WAL true
+
+TIL 23
+00000000
+00000000
+00000010
+00100110
+11111111
+10000001
+10000001
+10000001
+
+TIL 24
+00000000
+00000000
+00100000
+00100000
+00100000
+00111100
+00100100
+00100100
 
 TIL b
 00000000
@@ -656,11 +713,11 @@ TIL 1l
 NAME monitor right
 
 TIL 1m
-00000100
+00000000
 01111110
 01000010
 01000010
-01000010
+11000010
 01000010
 01111110
 00000000
@@ -733,14 +790,14 @@ TIL 1s
 NAME buttons 2
 
 TIL 1t
+00000000
+00000000
 11111111
+00000001
+10000001
+10000001
 10000001
 11111111
-00000001
-00000001
-00000001
-00000001
-00000001
 NAME control bottom right
 
 TIL 1u
@@ -765,6 +822,49 @@ TIL 1v
 11000000
 NAME left door
 WAL true
+
+TIL 1w
+00000000
+00000000
+11111111
+10000001
+11111111
+00000000
+00000000
+00000000
+WAL true
+
+TIL 1x
+00000001
+00000001
+11111111
+10000001
+11111111
+00000001
+00000001
+00000001
+WAL true
+
+TIL 1y
+10000000
+10000000
+11111111
+10000001
+11111111
+10000000
+10000000
+10000000
+WAL true
+
+TIL 1z
+00000000
+10100000
+00001110
+10101010
+00001110
+10100000
+00000000
+00000000
 
 SPR A
 00011000
@@ -920,6 +1020,19 @@ NAME locker 2
 DLG b
 POS 2 12,11
 
+SPR m
+00000000
+01111110
+01000010
+01011010
+01000010
+01000010
+01000010
+01111110
+NAME locker 3
+DLG b
+POS 2 12,12
+
 ITM 1
 00000000
 00111100
@@ -976,10 +1089,13 @@ NAME captain 2 dialog
 DLG 9
 """
 {
-  - captain2 = 1 ?
+  - captain2 == 1 ?
     {property locked false}You heave open the big metal door labeled {clr 0}STAFF ONLY{/clr}.
   - else ?
-    {property locked true}You look from the door labeled {clr 0}STAFF ONLY{/clr} to the captain. Isn't he going to do anything?
+    {
+      - captain2 == 0 ?
+        You look from the door labeled {clr 0}STAFF ONLY{/clr} to the captain. Isn't he going to do anything?
+    }{property locked true}
 }
 """
 NAME locked exit 1
@@ -1030,7 +1146,7 @@ It's a metal locker.{pg}{
     You scan the captain's ID card and the locker door flips open.{pg}The shelves inside are bare. There's nothing in here.{lockeropened = 1}
 }
 """
-NAME locker dialog
+NAME locker 2
 
 DLG e
 """
@@ -1044,6 +1160,19 @@ It's a big steering wheel; it's probably what drives the submarine.{pg}{
 }
 """
 NAME wheel dialog
+
+DLG g
+"""
+It's a metal locker.{pg}{
+  - id == 0 ?
+    You try to open it, but it doesn't budge. You notice it has a slot for an ID card.
+  - controlpass + id == 2 ?
+    You rummage through the locker again, but nothing else looks useful.
+  - id == 1 ?
+    You scan the captain's ID card and the locker door flips open.{pg}There's a lot of loose papers and manuals stuffed in here. A yellow sticky note with a four-digit number catches your eye. You think it might be useful, so you take it.{controlpass = 1}
+}
+"""
+NAME locker
 
 VAR captain
 0
